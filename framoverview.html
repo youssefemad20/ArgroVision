@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgroVision Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#17cf17",
+              "background-light": "#f6f8f6",
+              "background-dark": "#112111",
+              "foreground-light": "#0e1b0e",
+              "foreground-dark": "#e8f5e9",
+              "subtle-light": "#e7f3e7",
+              "subtle-dark": "#2a3c2a",
+              "muted-light": "#4e974e",
+              "muted-dark": "#a5d6a7",
+              "border-light": "#d0e7d0",
+              "border-dark": "#385138",
+            },
+            fontFamily: {
+              display: ["Work Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "0.75rem",
+              xl: "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+      body {
+        font-family: "Work Sans", sans-serif;
+      }
+    </style>
+  <!-- Chart.js and PapaParse for CSV parsing and charts -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-foreground-light dark:text-foreground-dark">
+<div class="flex min-h-screen w-full flex-col">
+<header class="sticky top-0 z-10 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-sm border-b border-border-light">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-14">
+      <div class="flex items-center gap-4">
+        <a href="framoverview.html" class="flex items-center gap-3">
+          <svg class="text-primary" fill="none" height="28" viewBox="0 0 48 48" width="28" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+          </svg>
+          <h1 class="text-lg font-bold tracking-tight text-foreground-light dark:text-foreground-dark">AgroVision</h1>
+        </a>
+      </div>
+      <nav class="hidden md:flex items-center gap-6">
+        <a class="text-sm font-medium text-muted-light hover:text-primary dark:text-muted-dark dark:hover:text-primary" href="framoverview.html">Dashboard</a>
+        <a class="text-sm font-medium text-muted-light hover:text-primary dark:text-muted-dark dark:hover:text-primary" href="cropstutes.html">Insights</a>
+        <a class="text-sm font-medium text-muted-light hover:text-primary dark:text-muted-dark dark:hover:text-primary" href="aboutus.html">Community</a>
+        <a class="text-sm font-medium text-muted-light hover:text-primary dark:text-muted-dark dark:hover:text-primary" href="aboutus.html">Support</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a class="flex h-9 w-9 items-center justify-center rounded-full bg-subtle-light text-foreground-light hover:bg-primary/20 dark:bg-subtle-dark dark:text-foreground-dark dark:hover:bg-primary/30" href="aboutus.html">
+          <span class="material-symbols-outlined">notifications</span>
+        </a>
+        <div class="aspect-square w-9 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAZ1y5WjtGUkmzXqNVI-k7k56SYHb4SnwbMJUY4ILj4zXD2LvNNiTBXBg1VsCKMSc-U6h1fFYLHqhNW_YPKsvyZaha0r4pvfZS9jm9er9ml29h9oh4cbe78-l7WA091xxAwFGw2Q2phFGit436cRUGxuf-Vez8hcl_696RCGsLGneZXz5z5LAgM4LdfsLf6yD7dDyujt3lwmNKea3T13kcEB5qRafY_snOQjUGf5tgKWA3BmQjykuFW2xXn2PPRMhKkz8iXH_1iaqY");'></div>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="flex-1 px-4 py-6 sm:px-6 md:px-8 lg:px-16 xl:px-32">
+<div class="mx-auto max-w-7xl">
+  <!-- Data / error placeholder -->
+  <div id="data-error" class="mx-auto max-w-4xl text-center text-sm text-red-600 hidden"></div>
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-foreground-light dark:text-foreground-dark">
+              Farm Overview
+            </h1>
+<p class="text-muted-light dark:text-muted-dark">
+              Get a comprehensive view of your farm's health and needs.
+            </p>
+</div>
+<section class="mb-12">
+<h2 class="mb-4 text-2xl font-bold text-foreground-light dark:text-foreground-dark">
+              Weather Conditions
+            </h2>
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+<div class="rounded-lg border border-border-light bg-subtle-light/30 p-6 dark:border-border-dark dark:bg-subtle-dark/30">
+<h3 class="text-base font-medium">Temperature Trends</h3>
+<p class="text-4xl font-bold" id="temp-current">--°C</p>
+<p class="mb-4 text-sm text-muted-light dark:text-muted-dark">Last 30 Days</p>
+<div class="h-48">
+  <canvas id="chart-temp" style="width:100%;height:100%"></canvas>
+</div>
+</div>
+<div class="rounded-lg border border-border-light bg-subtle-light/30 p-6 dark:border-border-dark dark:bg-subtle-dark/30">
+<h3 class="text-base font-medium">Rainfall Patterns</h3>
+<p class="text-4xl font-bold" id="rain-total">-- mm</p>
+<p class="mb-4 text-sm text-muted-light dark:text-muted-dark">Last 30 Days</p>
+<div class="h-48">
+  <canvas id="chart-rain" style="width:100%;height:100%"></canvas>
+</div>
+</div>
+<div class="rounded-lg border border-border-light bg-subtle-light/30 p-6 dark:border-border-dark dark:bg-subtle-dark/30">
+<h3 class="text-base font-medium">Humidity Levels</h3>
+<p class="text-4xl font-bold">70%</p>
+<p class="mb-4 text-sm text-muted-light dark:text-muted-dark">
+                  Current
+                </p>
+<div class="flex h-48 w-full items-center justify-center">
+<div class="relative h-32 w-32">
+<svg class="h-full w-full -rotate-90" viewBox="0 0 120 120">
+<circle class="stroke-subtle-light dark:stroke-subtle-dark" cx="60" cy="60" fill="none" r="54" stroke-width="12"></circle>
+<circle class="stroke-primary" cx="60" cy="60" fill="none" r="54" stroke-dasharray="339.292" stroke-dashoffset="101.7876" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl font-bold text-foreground-light dark:text-foreground-dark">70%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-12">
+<h2 class="mb-4 text-2xl font-bold">Crop Status</h2>
+<div class="@container overflow-hidden rounded-lg border border-border-light bg-subtle-light/30 dark:border-border-dark dark:bg-subtle-dark/30">
+<div class="flex flex-col @lg:flex-row">
+<div class="w-full bg-cover bg-center @lg:w-1/2" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDaC2aoDG5Mg_YxrQyC0x-Tr-C_ti7U7Ks1FAyOTvvypyiOx0-DzDBgTPJE1dyjX7gbTFtYNWODA7TqgdnyYwI0iRg3_S5JksPwNPGsqkLgg7zYLZ_vx7gs-yMpVD_WBk8v6gekx4D0p9LOx3nuRWEuuXBmqG0pEZ1neVif8wddMMjAQ621A7esR8u5F9fi2gnOU0Wja_R8xtsYiF3Fj9yO8Z_s_R7OS5VpKAdBX8I2b5r84fzFD8zD3VdyhCapTOwjcztPKzMRcyw"); aspect-ratio: 16/9;'></div>
+<div class="flex flex-col justify-center p-6 @lg:w-1/2">
+<h3 class="mb-2 text-xl font-bold">Watering Recommendation</h3>
+<p class="mb-2 text-muted-light dark:text-muted-dark">Current recommendation based on recent weather and analysis:</p>
+<div class="mb-4">
+  <span id="irrigation-status" class="text-xl font-bold">...</span>
+  <div id="irrigation-reason" class="text-sm text-muted-light dark:text-muted-dark"></div>
+</div>
+<a class="w-fit rounded bg-primary px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90 inline-block" href="cropstutes.html">View Details</a>
+</div>
+</div>
+</div>
+</section>
+<section>
+<h2 class="mb-4 text-2xl font-bold">Crop-Specific Advice</h2>
+<div class="mb-6 max-w-sm">
+<select id="crop-select" class="w-full rounded border border-border-light bg-background-light px-4 py-3 text-base text-foreground-light focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:text-foreground-dark">
+  <option value="Tomatoes">Tomatoes</option>
+  <option value="Corn">Corn</option>
+  <option value="Lettuce">Lettuce</option>
+  <option value="Potatoes">Potatoes</option>
+</select>
+</div>
+<div id="crop-advice" class="@container overflow-hidden rounded-lg border border-border-light bg-subtle-light/30 dark:border-border-dark dark:bg-subtle-dark/30">
+  <div class="flex flex-col @lg:flex-row-reverse">
+    <div id="crop-image" class="w-full bg-cover bg-center @lg:w-1/2" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCtvB1kF4NBSNGnYiURT2qssNcxf82d4cIZl-uaOCSE2Se8AKsWeS4qGdiZiEJ6oMKkB9xmfahkyTibO9SeAVJBKGPP3Uo8UL6dgVlzyu7Gi4lUdvVoASVOYCwvPgmD-rP0oF2eeYsrjybr7zi4J0ZnR2qKE-bfjYEABpUKz8SD8aJhMz4VB6LY0wA6VEd4baGHAuCDmqE2639MENLlIO8CV0BxsON3tWZ-9bqblo5HH0ZGMpF0wxspcaJAHBM0RqXxYAarFAc3X_s"); aspect-ratio: 16/9;'></div>
+    <div class="flex flex-col justify-center p-6 @lg:w-1/2">
+      <h3 id="crop-title" class="mb-2 text-xl font-bold">
+        Optimal Growth Tips for Tomatoes
+      </h3>
+      <p id="crop-tips" class="mb-4 text-muted-light dark:text-muted-dark">
+        Ensure consistent soil moisture, provide at least 6-8 hours
+        of direct sunlight, and consider using organic pest control
+        methods.
+      </p>
+      <a class="w-fit rounded bg-primary px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90 inline-block" href="cropstutes.html">
+        Learn More
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+  const cropData = {
+    Tomatoes: {
+      title: "Optimal Growth Tips for Tomatoes",
+      tips: "Ensure consistent soil moisture, provide at least 6-8 hours of direct sunlight, and consider using organic pest control methods.",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCtvB1kF4NBSNGnYiURT2qssNcxf82d4cIZl-uaOCSE2Se8AKsWeS4qGdiZiEJ6oMKkB9xmfahkyTibO9SeAVJBKGPP3Uo8UL6dgVlzyu7Gi4lUdvVoASVOYCwvPgmD-rP0oF2eeYsrjybr7zi4J0ZnR2qKE-bfjYEABpUKz8SD8aJhMz4VB6LY0wA6VEd4baGHAuCDmqE2639MENLlIO8CV0BxsON3tWZ-9bqblo5HH0ZGMpF0wxspcaJAHBM0RqXxYAarFAc3X_s"
+    },
+    Corn: {
+      title: "Optimal Growth Tips for Corn",
+      tips: "Plant corn in blocks for better pollination, keep soil evenly moist, and fertilize at key growth stages. Ensure full sun exposure.",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+    },
+    Lettuce: {
+      title: "Optimal Growth Tips for Lettuce",
+      tips: "Grow lettuce in cool weather, keep soil moist but not soggy, and provide partial shade in hot climates to prevent bolting.",
+      image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
+    },
+    Potatoes: {
+      title: "Optimal Growth Tips for Potatoes",
+      tips: "Plant potatoes in loose, well-drained soil, mound soil around stems as they grow, and water regularly but avoid waterlogging.",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80"
+    }
+  };
+
+  document.getElementById('crop-select').addEventListener('change', function() {
+    const crop = this.value;
+    const data = cropData[crop];
+    if (data) {
+      document.getElementById('crop-title').textContent = data.title;
+      document.getElementById('crop-tips').textContent = data.tips;
+      document.getElementById('crop-image').style.backgroundImage = `url('${data.image}')`;
+    }
+  });
+</script>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+  <script src="app.js?v=1"></script>
+</div>
+
+</body></html>

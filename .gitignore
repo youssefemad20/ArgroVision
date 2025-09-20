@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Environments
+venv/
+env/
+
+# VSCode
+.vscode/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# server files created by tests
+framserved.html
+framserved2.html
+appserved.js
+appserved_v1.js

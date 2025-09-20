@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About AgroVision</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#17cf17",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#112111",
+                        "foreground-light": "#0e1b0e",
+                        "foreground-dark": "#e8f5e9",
+                        "foreground-muted-light": "#4e974e",
+                        "foreground-muted-dark": "#a5d6a7",
+                        "border-light": "#e7f3e7",
+                        "border-dark": "#2e402e",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<!-- header logo + title: link to Farm Overview -->
+<a href="framoverview.html" class="flex items-center gap-4">
+  <div class="text-primary">
+    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path>
+    </svg>
+  </div>
+  <h1 class="text-2xl font-bold">AgroVision</h1>
+</a>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+    <a class="text-sm font-medium hover:text-primary transition-colors" href="framoverview.html">Dashboard</a>
+    <a class="text-sm font-medium hover:text-primary transition-colors" href="cropstutes.html">Insights</a>
+    <a class="text-sm font-medium hover:text-primary transition-colors" href="aboutus.html">Community</a>
+    <a class="text-sm font-medium hover:text-primary transition-colors" href="aboutus.html">Support</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="p-2 rounded-full hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" href="aboutus.html">
+<span class="material-symbols-outlined">notifications</span>
+</a>
+<div class="w-10 h-10 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCH-rQWLSdhb08fX9GuRJy_kM3MidS14479UB0EwbiRkA0OLt8l_L44GoAU5dHtD8xu_f3ASFFAO1MM_V81HepoGyP9wCi1dL8qWzqk_HFHw3syuYy7pTVjllxX_6-t5hBGL9GYCgCgn6b2isourbTkRBpaUnXpDv0t4xRWAId9nPhxROxFhUciQ54giEqLmYbqVYMIlAalk0epa2RJqcKh8dDqxxddUs-ID91k9613N4Sqo_tiZMa0eNGg7YB1ZfNBPPQ4yoAx2Lw');"></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-12">
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight">About Us</h1>
+<p class="mt-4 text-lg text-foreground-muted-light dark:text-foreground-muted-dark max-w-3xl mx-auto">At AgroVision, we're sowing the seeds of innovation. We are a passionate team of technologists, agronomists, and data wizards dedicated to cultivating a smarter future for farming. We believe that by harnessing the power of data, we can help farmers weather any storm, optimize every acre, and reap the rewards of their hard work. Our mission is to transform complex agricultural and weather data into simple, actionable insights that empower farmers to make confident decisions, grow healthier crops, and build a more sustainable world, one harvest at a time.</p>
+</div>
+<div class="space-y-16">
+<div>
+<h2 class="text-3xl font-bold mb-8 text-center text-primary">Meet the Team</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
+<div class="text-center">
+<div class="w-32 h-32 mx-auto rounded-full bg-cover bg-center mb-4" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7-DamNh5_k3br7kTzoyeq4K-xvazJYgpS0SyA3pXNbs7mOudyJqZbxhvpnBRfzdkZLuTYPpqAaZ4_jbeBGdl8F7Cmp-bQndCAP2LGtQGDu61uxk3uzM6kIeIWTVCeNAoeRTfx9Mzt2tv0Uh5BOsePJ3CtCeSChGuKnMalommyD8-UZJuayqWH9Pk6dtKaGUJQKsfM5csa2dD9QnUcqQIsMS3hUtitoAv0vNxVC5wyymGEO-1kZk9OdykeSV3VtUvaVc3-Fn29vMU');"></div>
+<h3 class="text-lg font-bold">Dr. Elias Carter</h3>
+<p class="text-foreground-muted-light dark:text-foreground-muted-dark">Founder &amp; CEO</p>
+</div>
+<div class="text-center">
+<div class="w-32 h-32 mx-auto rounded-full bg-cover bg-center mb-4" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSk-fs3KoJ_lKJHZrBzCnpf8mNpdY16y6vXYhS-IQzfITPRYKdhETthKwmeJh-cRx_fNXkfU5AsXVKQGVxEchOHq98ZmXAmyGaJfytunPDc2sp-W5ZZBw5v2-z77hn6hjISRq5j4KLnJg7b2JwWDlgA1EL6ay4xCBjmrnSPnnNLx5gCZ_aXq5tPFPL_uC_hTh015H5JZxizsGIDopF_THhqP74T_u71z1zJHXrRcngsrV0_t_6DMFrQhDqoGW-zz6_kfrfCGlH944');"></div>
+<h3 class="text-lg font-bold">Ms. Olivia Bennett</h3>
+<p class="text-foreground-muted-light dark:text-foreground-muted-dark">Product Lead</p>
+</div>
+<div class="text-center">
+<div class="w-32 h-32 mx-auto rounded-full bg-cover bg-center mb-4" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDm-r6VJUNiJt7TJKE_w8M1Fv9V48hqFqXb6NGmKgfSRhJHnm9DOWulgWtNWlnZXpZKSKtc3cjxLYNzWFMsn-4mXIF5Z5oR84kw1aw3IJ8ZY_2G6MMMfx_UsLGGYDFvZg4Vc5EiO3oVEYnoVO8ODpl2k_oQUd4VLaA0aaM6xcY0tdygJeVlDXKIjoZ960FsQmeTbbOudaxmcxZF36C8B3C5vcAd3CN6GcrMkbmaBYloTpNJ8OS7FHJK_VlCuY_HzJ4LSUaxEm62oX8');"></div>
+<h3 class="text-lg font-bold">Mr. Noah Thompson</h3>
+<p class="text-foreground-muted-light dark:text-foreground-muted-dark">Engineering Lead</p>
+</div>
+<div class="text-center">
+<div class="w-32 h-32 mx-auto rounded-full bg-cover bg-center mb-4" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVIRuwQmZBcoFYV-gWBdtmiHqCdesQiBW9spswSfM9Q3GQPzLxSNBU2NejsOwjcHnSXi6KZNGB3Xj0qeDonH3C-8PGCbUJXqwuMhE83irceTIqlCoL99xYod-pQVpvh3zSgcKGHblxVasA4webydLpnocnto8a6-jm8A6xzE29xAmXiBMJSeLH8QRpSdj1jEIzp85V7O-DGenPq-w5QR2q-gHmOMfogaqUElslVEg2ZGfuRtIi_018O2HnewVq6xr1DyxGf32-8SQ');"></div>
+<h3 class="text-lg font-bold">Ms. Sophia Clark</h3>
+<p class="text-foreground-muted-light dark:text-foreground-muted-dark">Data Science</p>
+</div>
+<div class="text-center">
+<div class="w-32 h-32 mx-auto rounded-full bg-cover bg-center mb-4" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAc5LCG2NyZILKsB37vsQFHJ8L1oU9U-bnPu1B8E2g-5bTqj93o5UaOuT4vr5WO0lSg7WkbJ-q6RPGcuSlIs1y5S2uft-28R-rF9k3tNbGSOOh6e25VgtzK_5DO50JvuyiUYt4bRMIxY35GK8Q9-hMWtR3OylkRBMvdVnaMIXCvtx30Kx6ZHrz8LIzVL0hmjrU9QHoXBB1AqMB7BzL3f2xCvJgYpgq3eyuwG7VpcPbSlkytW8cVxQjsh5lsqD_K1R0DsPhmogMc4AY');"></div>
+<h3 class="text-lg font-bold">Ms. Isabella Green</h3>
+<p class="text-foreground-muted-light dark:text-foreground-muted-dark">Customer Success</p>
+</div>
+</div>
+</div>
+<div>
+<h2 class="text-3xl font-bold mb-8 text-center text-primary">Contact Us</h2>
+<div class="max-w-xl mx-auto text-center">
+<p class="text-lg mb-4 text-foreground-muted-light dark:text-foreground-muted-dark">Have questions or want to learn more? Reach out to us!</p>
+<div class="flex flex-col sm:flex-row justify-center items-center gap-6 text-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">call</span>
+<a class="hover:text-primary transition-colors" href="tel:+1234567890">(123) 456-7890</a>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">email</span>
+<a class="hover:text-primary transition-colors" href="mailto:contact@agrovision.com">contact@agrovision.com</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-background-light dark:bg-background-dark border-t border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-foreground-muted-light dark:text-foreground-muted-dark">
+<p>© 2024 AgroVision. All rights reserved.</p>
+</div>
+</footer>
+</div>
+
+</body></html>
