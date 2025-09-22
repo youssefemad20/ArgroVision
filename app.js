@@ -45,23 +45,26 @@ function decideIrrigation(analyzedRows){
 
 // --- Crop profiles & UI integration ---
 window.cropProfiles = {
-  wheat: {name:'Wheat', rainThreshold:8, humidityThreshold:60, desc:'Wheat prefers moderate moisture; avoid waterlogging.', growth:'80% (Good)', recommended_mm:8, projected_yield:'4.2 tons/ha', tips:'Keep soil evenly moist; fertilize at tillering and booting stages.', image:'https://images.unsplash.com/photo-1518972559570-47d9f1f9a4b3'},
+  wheat: {name:'Wheat', rainThreshold:8, humidityThreshold:60, desc:'Wheat prefers moderate moisture; avoid waterlogging.', growth:'80% (Good)', recommended_mm:8, projected_yield:'4.2 tons/ha', tips:'Keep soil evenly moist; fertilize at tillering and booting stages.', image:'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80'},
   corn: {name:'Corn', rainThreshold:10, humidityThreshold:55, desc:'Corn needs higher water during tasseling and grain-fill stages.', growth:'85% (Good)', recommended_mm:12, projected_yield:'6.0 tons/ha', tips:'Ensure adequate N; irrigate heavily during tassel and grain-fill.', image:'https://images.unsplash.com/photo-1501004318641-b39e6451bec6'},
   potatoes: {name:'Potatoes', rainThreshold:6, humidityThreshold:60, desc:'Potatoes like consistent moisture; avoid drought stress.', growth:'78% (Fair)', recommended_mm:10, projected_yield:'20 tons/ha', tips:'Maintain even moisture; avoid overwatering during tuber bulking.', image:'https://images.unsplash.com/photo-1501004318641-b39e6451bec6'},
   tomatoes: {name:'Tomatoes', rainThreshold:5, humidityThreshold:55, desc:'Tomatoes need steady moisture and good sunlight; watch for fungal disease in high humidity.', growth:'95% (Excellent)', recommended_mm:10, projected_yield:'12.5 tons/ha', tips:'Provide 6-8 hours sunlight; use drip irrigation to reduce disease.', image:'https://images.unsplash.com/photo-1550258987-190a2d41a8ba'},
   peppers: {name:'Peppers', rainThreshold:5, humidityThreshold:55, desc:'Peppers prefer well-drained soils and regular irrigation.', growth:'88% (Good)', recommended_mm:8, projected_yield:'7.0 tons/ha', tips:'Avoid waterlogged soils; feed during fruiting.', image:'https://images.unsplash.com/photo-1524594154909-1a1ff1e8a47a'},
   apples: {name:'Apples', rainThreshold:7, humidityThreshold:60, desc:'Apples need balanced water; monitor during fruit set and enlargement.', growth:'82% (Good)', recommended_mm:10, projected_yield:'30 tons/ha', tips:'Thin excess fruit and monitor calcium levels to avoid blossom end rot.', image:'https://images.unsplash.com/photo-1501004318641-b39e6451bec6'},
   grapes: {name:'Grapes', rainThreshold:4, humidityThreshold:50, desc:'Grapes tolerate drier conditions; excess water can reduce quality.', growth:'90% (Good)', recommended_mm:5, projected_yield:'10 tons/ha', tips:'Control vigor with deficit irrigation; avoid high humidity during ripening.', image:'https://images.unsplash.com/photo-1544025162-d76694265947'},
+  lettuce: {name:'Lettuce', rainThreshold:6, humidityThreshold:65, desc:'Lettuce prefers cool, moist conditions and partial shade in heat.', growth:'75% (Fair)', recommended_mm:6, projected_yield:'25 tons/ha', tips:'Keep soil cool and moist; use shade in summer to prevent bolting.', image:'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80'},
 };
 
 function applyCropSelection(key){
-  const profile = window.cropProfiles[key] || null;
+  // normalize incoming key (allow 'Tomatoes' or 'tomatoes')
+  const normalizedKey = key ? String(key).toLowerCase() : null;
+  const profile = normalizedKey ? window.cropProfiles[normalizedKey] || null : null;
   window.selectedCropProfile = profile;
-  // save selection
-  if(key) localStorage.setItem('selectedCrop', key); else localStorage.removeItem('selectedCrop');
-  // sync any crop-select elements on the page
+  // save normalized selection
+  if(normalizedKey) localStorage.setItem('selectedCrop', normalizedKey); else localStorage.removeItem('selectedCrop');
+  // sync any crop-select elements on the page using normalized value
   try{
-    document.querySelectorAll('select#crop-select').forEach(s=>{ s.value = key || ''; });
+    document.querySelectorAll('select#crop-select').forEach(s=>{ s.value = normalizedKey || ''; });
   }catch(e){/* ignore in non-browser env */}
   // Debug: create/update a visible badge so user can see selection applied
   try{
@@ -69,7 +72,7 @@ function applyCropSelection(key){
     if(!dbg){ dbg = document.createElement('div'); dbg.id = 'crop-debug'; dbg.style.position='fixed'; dbg.style.right='12px'; dbg.style.bottom='12px'; dbg.style.background='#0f5132'; dbg.style.color='#d1fae5'; dbg.style.padding='8px 12px'; dbg.style.borderRadius='8px'; dbg.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)'; dbg.style.zIndex = 99999; document.body.appendChild(dbg); }
     dbg.textContent = key ? ('Selected crop: ' + key) : 'No crop selected';
   }catch(e){/* ignore */}
-  console.log('applyCropSelection called for', key, profile);
+  console.log('applyCropSelection called for', normalizedKey, profile);
   // update cropstutes UI if present
   const nameEl = document.getElementById('crop-name');
   const descEl = document.getElementById('crop-desc');
@@ -89,10 +92,19 @@ function applyCropSelection(key){
     // Update hero title/tips and image if present
     const heroTitle = document.getElementById('crop-hero-title');
     if(heroTitle) heroTitle.textContent = 'Optimal Growth Tips for ' + profile.name;
-    const heroImg = document.getElementById('crop-hero-image');
-    if(heroImg && profile.image) heroImg.style.backgroundImage = `url('${profile.image}')`;
-    const tipsEl = document.getElementById('crop-desc');
+  // use profile image or fallback
+  const heroImg = document.getElementById('crop-hero-image');
+  const useImg = (profile && profile.image) ? profile.image : (window.defaultCropImage || null);
+  if(heroImg && useImg) heroImg.style.backgroundImage = `url('${useImg}')`;
+    // also update framoverview section ids if present
+    const frameTitle = document.getElementById('crop-title');
+    if(frameTitle) frameTitle.textContent = 'Optimal Growth Tips for ' + profile.name;
+  const frameImg = document.getElementById('crop-image');
+  if(frameImg && useImg) frameImg.style.backgroundImage = `url('${useImg}')`;
+  const tipsEl = document.getElementById('crop-desc');
     if(tipsEl && profile.tips) tipsEl.textContent = profile.tips;
+    const frameTips = document.getElementById('crop-tips');
+    if(frameTips && profile.tips) frameTips.textContent = profile.tips;
   } else {
     if(nameEl) nameEl.textContent = '—';
     if(descEl) descEl.textContent = '';
