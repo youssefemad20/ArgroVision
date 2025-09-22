@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgroVision</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#17cf17",
+              "background-light": "#f6f8f6",
+              "background-dark": "#112111",
+            },
+            fontFamily: {
+              display: ["Work Sans"],
+            },
+            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+          },
+        },
+      };
+    </script>
+    <!-- Minimal fallback CSS to ensure header/nav/hero render if Tailwind is missing -->
+    <style>
+      /* Basic layout container */
+      .container{max-width:1100px;margin:0 auto;padding-left:1rem;padding-right:1rem}
+      header{background:transparent}
+      .site-brand{display:flex;align-items:center;gap:.5rem}
+      nav a{margin-right:1rem;color:#334155;text-decoration:none;font-weight:600}
+      .hero{position:relative;min-height:420px;background-size:cover;background-position:center;border-radius:12px;color:#fff}
+      .hero .overlay{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.5));display:flex;align-items:center;justify-content:center;padding:2rem;text-align:center}
+      .btn-primary{background:#17cf17;color:#000;padding:.75rem 1.2rem;border-radius:10px;font-weight:700;display:inline-block;text-decoration:none}
+      @media(min-width:768px){ .hero{min-height:520px} nav{display:block} }
+      @media(max-width:767px){ nav{display:none} .container{padding-left:.75rem;padding-right:.75rem} }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+<div class="relative w-full overflow-x-hidden">
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="container mx-auto px-4">
+<div class="flex items-center justify-between py-4">
+<a class="flex items-center gap-2" href="framoverview.html">
+<svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">AgroVision</h2>
+</a>
+<nav class="hidden items-center gap-8 md:flex">
+  <a class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-primary" href="index.html">Home</a>
+  <a class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-primary" href="framoverview.html">Features</a>
+  <a class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-primary" href="aboutus.html">About us</a>
+</nav>
+<a class="hidden items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-black shadow-md transition-transform duration-200 hover:scale-105 md:inline-flex" href="framoverview.html">
+              Get Started
+            </a>
+</div>
+</div>
+</header>
+<main class="container mx-auto px-4 py-8 md:py-16">
+<section class="relative min-h-[500px] w-full rounded-xl bg-cover bg-center text-white" style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0cE2nwiQPxGTYMCazgOwT3rGOh4Z2___Tkxnm70BiZ4Pr93ztp3lf5Q8VybIdNqvvgtQScnUAbOFbLWjxKET7rnWeOlK_7C1OmesGsl2MFl0OWTHnhsriyQSs9v_C7NPVoU_tzDgnzctBQzrM0p-IfzBj_necaXmr5TMVr-QzzDWG6XW15dwu0-_hczmbvVo3sSOiS2dHrV5Vp4OdNZjoIzFNJgw1sTmh0_xnARl0fhENZNUBzTeZBs83iRCsv9gfklcrs2Apt4w");'>
+<div class="absolute inset-0 flex flex-col items-center justify-center gap-6 rounded-xl bg-black/30 p-8 text-center">
+<h1 class="text-4xl font-black leading-tight tracking-tight md:text-6xl">Empowering Farmers with Data-Driven Insights</h1>
+<p class="max-w-3xl text-base font-light text-slate-200 md:text-lg">
+              AgroVision transforms complex agricultural and weather data into simple, actionable insights, helping you make informed decisions for a more productive and sustainable
+              farm.
+            </p>
+<a class="mt-4 inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-bold text-black shadow-lg transition-transform duration-200 hover:scale-105" href="framoverview.html">
+              Get Started
+            </a>
+</div>
+</section>
+<section class="py-16 md:py-24">
+<div class="mx-auto max-w-4xl text-center">
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white md:text-4xl">Key Features</h2>
+<p class="mt-4 text-base text-slate-600 dark:text-slate-400 md:text-lg">AgroVision offers a suite of tools designed to optimize your farming practices and maximize yields.</p>
+</div>
+<div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+<div class="flex flex-col gap-4 rounded-lg border border-slate-200/50 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg dark:border-slate-800/50 dark:bg-background-dark dark:hover:shadow-primary/10">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<svg fill="currentColor" height="28" viewBox="0 0 256 256" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z"></path>
+</svg>
+</div>
+<h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">Weather Forecasting</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400">Stay ahead of changing weather conditions with accurate, localized forecasts. Plan your activities effectively and minimize risks.</p>
+</div>
+<div class="flex flex-col gap-4 rounded-lg border border-slate-200/50 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg dark:border-slate-800/50 dark:bg-background-dark dark:hover:shadow-primary/10">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<svg fill="currentColor" height="28" viewBox="0 0 256 256" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M156,72a76.2,76.2,0,0,0-20.26,2.73,55.63,55.63,0,0,0-9.41-11.54l9.51-13.57a8,8,0,1,0-13.11-9.18L113.22,54A55.9,55.9,0,0,0,88,48c-.58,0-1.16,0-1.74,0L83.37,31.71a8,8,0,1,0-15.75,2.77L70.5,50.82A56.1,56.1,0,0,0,47.23,65.67L33.61,56.14a8,8,0,1,0-9.17,13.11L38,78.77A55.55,55.55,0,0,0,32,104c0,.57,0,1.15,0,1.72L15.71,108.6a8,8,0,0,0,1.38,15.88,8.24,8.24,0,0,0,1.39-.12l16.32-2.88a55.74,55.74,0,0,0,5.86,12.42A52,52,0,0,0,76,224h80a76,76,0,0,0,0-152ZM48,104a40,40,0,0,1,72.54-23.24,76.26,76.26,0,0,0-35.62,40,52.14,52.14,0,0,0-31,4.17A40,40,0,0,1,48,104ZM156,208H76a36,36,0,1,1,4.78-71.69c-.37,2.37-.63,4.79-.77,7.23a8,8,0,0,0,16,.92,58.91,58.91,0,0,1,1.88-11.81c0-.16.09-.32.12-.48A60.06,60.06,0,1,1,156,208Z"></path>
+</svg>
+</div>
+<h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">Crop Monitoring</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400">Monitor the health and growth of your crops in real-time using satellite imagery and sensor data. Identify potential issues early and take timely action.</p>
+</div>
+<div class="flex flex-col gap-4 rounded-lg border border-slate-200/50 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg dark:border-slate-800/50 dark:bg-background-dark dark:hover:shadow-primary/10">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<svg fill="currentColor" height="28" viewBox="0 0 256 256" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M247.63,39.89a8,8,0,0,0-7.52-7.52c-51.76-3-93.32,12.74-111.18,42.22-11.8,19.49-11.78,43.16-.16,65.74a71.34,71.34,0,0,0-14.17,27L98.33,151c7.82-16.33,7.52-33.35-1-47.49-13.2-21.79-43.67-33.47-81.5-31.25a8,8,0,0,0-7.52,7.52c-2.23,37.83,9.46,68.3,31.25,81.5A45.82,45.82,0,0,0,63.44,168,54.58,54.58,0,0,0,87,162.33l25,25V216a8,8,0,0,0,16,0V186.51a55.61,55.61,0,0,1,12.27-35,73.91,73.91,0,0,0,33.31,8.4,60.9,60.9,0,0,0,31.83-8.86C234.89,133.21,250.67,91.65,247.63,39.89ZM47.81,147.6C32.47,138.31,23.79,116.32,24,88c28.32-.24,50.31,8.47,59.6,23.81,4.85,8,5.64,17.33,2.46,26.94L61.65,114.34a8,8,0,0,0-11.31,11.31l24.41,24.41C65.14,153.24,55.82,152.45,47.81,147.6Zm149.31-10.22c-13.4,8.11-29.15,8.73-45.15,2l53.69-53.7a8,8,0,0,0-11.31-11.31L140.65,128c-6.76-16-6.15-31.76,2-45.15,13.94-23,47-35.82,89.33-34.83C232.94,90.34,220.14,123.44,197.12,137.38Z"></path>
+</svg>
+</div>
+<h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">Resource Management</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400">Optimize the use of water, fertilizers, and other resources. Reduce waste and improve efficiency for a more sustainable operation.</p>
+</div>
+</div>
+</section>
+<section class="rounded-xl bg-primary/10 px-8 py-12 text-center dark:bg-primary/20">
+<div class="mx-auto max-w-4xl">
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white md:text-4xl">Ready to Grow Your Farm's Potential?</h2>
+<p class="mt-4 text-base text-slate-600 dark:text-slate-300 md:text-lg">Join thousands of farmers who are already benefiting from AgroVision's insights. Start your free trial today and experience the difference.</p>
+<a class="mt-8 inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-bold text-black shadow-lg transition-transform duration-200 hover:scale-105" href="framoverview.html">
+              Explore AgroVision
+            </a>
+</div>
+</section>
+</main>
+<footer class="border-t border-slate-200/50 dark:border-slate-800/50">
+<div class="container mx-auto px-4 py-8">
+<div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+<p class="text-sm text-slate-600 dark:text-slate-400">Â© 2024 AgroVision. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-sm text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary" href="aboutus.html">Privacy Policy</a>
+<a class="text-sm text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary" href="aboutus.html">Terms of Service</a>
+<a class="text-sm text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary" href="aboutus.html">Contact Us</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>
